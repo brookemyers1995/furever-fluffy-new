@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Book a Furever Fluffy dog grooming appointment online using our secure DaySmart booking system.">
+  <title>Appointments | Furever Fluffy Dog Grooming</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="CSS/ff_styles.css">
+  <link rel="stylesheet" href="CSS/ff_schedule.css">
+  <link rel="stylesheet" href="CSS/aries.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div class="floating-shapes" aria-hidden="true">
+    <span></span><span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span><span></span><span></span><span></span>
+  </div>
+
+  <header class="site-header">
+    <a class="brand" href="index.html" aria-label="Furever Fluffy home">
+      <img src="Images/brand-art.png" alt="Furever Fluffy Dog Grooming" class="brand-logo">
+    </a>
+  </header>
+  <div class="nav-bar">
+    <button class="menu-toggle" aria-label="Open navigation" aria-expanded="false">☰</button>
+    <nav class="horizontal" aria-label="Main navigation">
+      <ul>
+        <li><a href="index.html"><span>⌂</span> Home</a></li>
+        <li><a href="ff_services.html"><span>✂</span> Services</a></li>
+        <li><a href="ff_about.html"><span>♡</span> About</a></li>
+        <li><a href="ff_testimonials.html"><span>★</span> Testimonials</a></li>
+        <li><a href="ff_contact.html"><span>✉</span> Contact</a></li>
+        <li><a class="active" aria-current="page" href="ff_schedule.html"><span>◷</span> Appointments</a></li>
+        <li><a href="ff_shop.html"><span>♢</span> Shop</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <main class="appointments-main" id="main-content" tabindex="-1">
+    <section class="appointments-intro glass-card reveal" aria-labelledby="appointments-title">
+      <span class="eyebrow">🐾 YOUR PUP’S NEXT SPA DAY</span>
+      <h1 id="appointments-title">Book an appointment</h1>
+      <p>Ready for a fresh, fluffy pup? Choose a grooming appointment with Furever Fluffy below.</p>
+    </section>
+    <section class="booking-card glass-card reveal" aria-labelledby="booking-title">
+      <div class="booking-heading"><span class="booking-icon" aria-hidden="true">♡</span><div><span class="eyebrow">ONLINE BOOKING</span><h2 id="booking-title">Find your pup’s spot</h2><p>Pick a service and available time in our booking system.</p></div></div>
+      <div class="booking-widget" aria-label="DaySmart online appointment booking">
+        <script type="text/javascript">
+          daysmart_acc = "adb3038b-f4ae-4f54-8237-42825d756a54";
+          daysmart_iframe_width = 700;
+          daysmart_iframe_height = 0;
+          daysmart_website_root = "https://plugin.myonlineappointment.com";
+          load_in_iframe = "false";
+        </script>
+        <script type="text/javascript" src="https://plugin.myonlineappointment.com/Scripts/external/bookingplugin.js"></script>
+      </div>
+      <p class="booking-help">Need a hand booking? <a href="tel:+13862155436">Call (386) 215-5436</a> or <a href="ff_contact.html">contact us</a>.</p>
+    </section>
+    <section class="appointment-notes" aria-label="Helpful appointment information">
+      <article class="appointment-note glass-card reveal"><span aria-hidden="true">◷</span><div><h2>Our hours</h2><p>8 AM–6 PM Monday, Wednesday, Friday, Saturday &amp; Sunday. Closed Tuesday &amp; Thursday.</p></div></article>
+      <article class="appointment-note glass-card reveal"><span aria-hidden="true">✂</span><div><h2>Explore services</h2><p>Find the right treatment for your pup on our <a href="ff_services.html">services page</a>.</p></div></article>
+    </section>
+  </main>
+  <footer><div><strong>🐾 Furever Fluffy Dog Grooming</strong><p>Making tails wag, one groom at a time.</p></div><p>© 2026 Furever Fluffy Dog Grooming</p></footer>
+  <div class="accessibility-widget">
+    <section class="accessibility-panel" id="accessibility-panel" aria-label="Accessibility options" hidden>
+      <div class="accessibility-heading"><h2>Accessibility options</h2><button class="accessibility-close" type="button" aria-label="Close accessibility options">×</button></div>
+      <p>Adjust how this site looks and moves.</p>
+      <div class="accessibility-row"><span>Text size</span><div class="accessibility-actions"><button type="button" data-a11y="text-down" aria-label="Decrease text size">A−</button><output id="text-size-value" aria-live="polite">100%</output><button type="button" data-a11y="text-up" aria-label="Increase text size">A+</button></div></div>
+      <button class="accessibility-option" type="button" data-a11y="contrast" aria-pressed="false"><span>◐</span> High contrast <span class="option-state">Off</span></button>
+      <button class="accessibility-option" type="button" data-a11y="motion" aria-pressed="false"><span>Ⅱ</span> Pause animations <span class="option-state">Off</span></button>
+      <button class="accessibility-reset" type="button" data-a11y="reset">Reset options</button>
+    </section>
+    <button class="accessibility-trigger" type="button" aria-label="Open accessibility options" aria-controls="accessibility-panel" aria-expanded="false"><img src="Images/paw.svg" alt="" aria-hidden="true"></button>
+  </div>
+  <script src="JS/ff_script.js"></script>
+  <script src="JS/ff_accessibility.js"></script>
+  <script src="JS/aries.js" defer></script>
+</body>
+</html>
