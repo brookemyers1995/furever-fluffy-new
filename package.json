@@ -1,0 +1,14 @@
+{
+  "name": "furever-fluffy-aries",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "server.mjs",
+  "scripts": {
+    "build": "node -e \"console.log('Static site ready')\"",
+    "start": "node server.mjs"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
