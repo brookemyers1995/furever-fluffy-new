@@ -4,7 +4,7 @@
   const KEY = 'furever-fluffy-shop-cart-v2';
   const MAX_ITEMS = 20;
   const cards = [...document.querySelectorAll('.product-card')];
-  const catalog = new Map(cards.filter(c => c.querySelector('[data-add-asin]')).map(c => [c.dataset.asin, {name:c.querySelector('h3').textContent, category:c.dataset.category}]));
+  const catalog = new Map(cards.filter(c => c.querySelector('[data-add-asin]')).map(c => [c.dataset.asin, {name:c.querySelector('h3').textContent, category:c.dataset.category, image:c.querySelector('.product-art img')?.getAttribute('src') || '', variant:c.querySelector('.product-variant')?.textContent || ''}]));
   const items = document.getElementById('cart-items');
   const count = document.getElementById('cart-count');
   const status = document.getElementById('cart-status');
@@ -24,7 +24,7 @@
       if (catalog.has(asin) && Number.isInteger(qty) && qty > 0 && qty <= 99 && (cart.has(asin) || cart.size < MAX_ITEMS)) cart.set(asin,qty);
     }
   } catch (_) { saved = false; }
-  function say(message) {status.textContent = message;}
+  function say(message) {status.textContent = message;status.classList.toggle('cart-notice', /20 different|cannot save|cannot accept|opened for review/.test(message));}
   function persist() {
     try { localStorage.setItem(KEY, JSON.stringify([...cart])); }
     catch (_) { saved=false; say('Your picks work for this visit, but this browser cannot save them.'); }
@@ -42,18 +42,22 @@
   }
   function render() {
     items.replaceChildren();
-    if (!cart.size) {const p=document.createElement('p');p.textContent='Your cart is waiting for a little tail-wagging joy.';items.append(p);}
+    if (!cart.size) {const p=document.createElement('p');p.className='cart-empty';p.textContent='A little tail-wagging joy starts here. Add a favorite to your picks.';items.append(p);}
     for (const [asin,qty] of cart) {
       const data=catalog.get(asin), row=document.createElement('div');row.className='cart-item';
-      const a=document.createElement('a');a.href=`https://www.amazon.com/dp/${asin}?tag=${TAG}`;a.target='_blank';a.rel='sponsored noopener noreferrer';a.textContent=data.name;
+      const a=document.createElement('a');a.href=`https://www.amazon.com/dp/${asin}?tag=${TAG}`;a.target='_blank';a.rel='sponsored noopener noreferrer';a.className='cart-product-link';
+      if(data.image){const image=document.createElement('img');image.src=data.image;image.alt='';image.width=56;image.height=56;a.append(image);}
+      const info=document.createElement('span');info.className='cart-product-info';const title=document.createElement('span');title.className='cart-product-name';title.textContent=data.name;title.title=data.name;info.append(title);
+      if(data.variant){const variant=document.createElement('span');variant.className='cart-product-variant';variant.textContent=data.variant;info.append(variant);}a.append(info);
       const controls=document.createElement('div');controls.className='cart-item-controls';
       const minus=button('−',`Decrease quantity of ${data.name}`,()=>change(asin,-1));
-      const quantity=document.createElement('span');quantity.textContent=`Quantity: ${qty}`;
+      const quantity=document.createElement('span');quantity.className='cart-quantity';quantity.textContent=String(qty);quantity.setAttribute('aria-label',`Quantity: ${qty}`);
       const plus=button('+',`Increase quantity of ${data.name}`,()=>change(asin,1));plus.disabled=qty>=99;
       const remove=button('Remove',`Remove ${data.name}`,()=>{cart.delete(asin);persist();render();say(`${data.name} removed.`);});
-      controls.append(minus,quantity,plus,remove);row.append(a,controls);items.append(row);
+      remove.className='cart-remove';controls.setAttribute('aria-label',`Quantity controls for ${data.name}`);controls.append(minus,quantity,plus,remove);row.append(a,controls);items.append(row);
     }
-    count.textContent=[...cart.values()].reduce((a,b)=>a+b,0);
+    const total=[...cart.values()].reduce((a,b)=>a+b,0);count.textContent=total;
+    const countLabel=document.getElementById('cart-count-label');if(countLabel)countLabel.textContent=total===1?'item selected':'items selected';
     checkout.disabled=!cart.size;clear.disabled=!cart.size;
   }
   function applyFilter() {
